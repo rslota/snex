@@ -26,7 +26,7 @@ defmodule Snex.Release do
         [appname | app_relative_path] = Path.split(symlink_path),
         symlink_wildcard = Path.join([rel.path, "lib", "#{appname}-*"] ++ app_relative_path),
         symlink_path <- Path.wildcard(symlink_wildcard, match_dot: true) do
-      File.rm!(symlink_path)
+      File.rm_rf!(symlink_path)
       File.ln_s!(target, symlink_path)
     end
 
